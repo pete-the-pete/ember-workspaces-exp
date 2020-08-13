@@ -1,11 +1,26 @@
 'use strict';
 
-const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+// const Funnel = require('broccoli-funnel');
+const path = require('path');
 
 module.exports = function(defaults) {
-  let app = new EmberAddon(defaults, {
-    // Add options here
-  });
+  const testHarnessPath = path.join('../../test-harness');
+
+  let overrides = {
+    name: 'dummy',
+    configPath: `${testHarnessPath}/config/environment`,
+    trees: {
+      app: `${testHarnessPath}/app`,
+      public: `${testHarnessPath}/public`,
+      styles: `${testHarnessPath}/app/styles`,
+      templates: `${testHarnessPath}/app/templates`,
+      tests: `tests`,
+      vendor: null,
+    },
+  };
+
+  let app = new EmberApp(defaults, overrides);
 
   /*
     This build file specifies the options for the dummy test app of this
