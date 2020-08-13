@@ -49,5 +49,9 @@
   },
   "engines": {
     "node": "8.* || >= 10.*"
-  }
+  },
+  "workspaces": [
+    "addons/*",
+    "engines/*"
+  ]
 }
